@@ -2,19 +2,27 @@ import { useState } from "react";
 import Child from "./Child";
 
 function Parent() {
-  const dataToPass = "Hello from Parent";
+  const [dataToChild, setDataToChild] = useState<string>("Hello from Parent");
   const [dataFromChild, setDataFromChild] = useState<string>("");
+  const [showButton, setshowButton] = useState<boolean>(false);
 
   function handleChildEvent(data: string): void {
-    setDataFromChild(data);
+    if (data) {
+      setDataFromChild(data);
+      setDataToChild("Data received successfully from Child");
+      setshowButton(!showButton);
+    }
   }
 
   return (
     <>
       <div>Parent</div>
       <p>data from Child is : {dataFromChild}</p>
+      <div>{
+          showButton && <button >Claps</button> // equivalent to if conditional rendering
+        }</div> 
       <Child
-        message={dataToPass}
+        message={dataToChild}
         setDataToParent={(data) => handleChildEvent(data)}
       />
     </>
