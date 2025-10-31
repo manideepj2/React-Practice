@@ -15,7 +15,7 @@ function Parent() {
       <p>data from Child is : {dataFromChild}</p>
       <Child
         message={dataToPass}
-        setDataToParent={(e) => handleChildEvent(e)}
+        setDataToParent={(data) => handleChildEvent(data)}
       />
     </>
   );
